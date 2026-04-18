@@ -8,6 +8,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&display=swap" rel="stylesheet">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-118XBY0BED"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-118XBY0BED');
+  // Attribute every event on this page to the rep (from URL ?name=...).
+  // Matches the pattern used on the DR Review Arsenal rep pages so GA4
+  // reports can filter by rep_name across the whole funnel.
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      var repName = p.get('name');
+      if (repName) {
+        gtag('set', { rep_name: repName });
+        window.REP_NAME = repName;
+      }
+    } catch (e) {}
+  })();
+</script>
 <style>
   :root {
     --navy:       #002c5F;
@@ -796,6 +817,28 @@
     el.addEventListener('change', saveDraft);
   });
 
+  // ───── Funnel events (GA4) ─────
+  // form_start fires exactly once — the first time the rep interacts with
+  // a real field. Lets us distinguish "opened the link" from "actually
+  // started filling it out" in GA4.
+  var formStarted = false;
+  function track(eventName, params) {
+    if (typeof window.gtag !== 'function') return;
+    var payload = params || {};
+    if (window.REP_NAME && !payload.rep_name) payload.rep_name = window.REP_NAME;
+    window.gtag('event', eventName, payload);
+  }
+  function markStarted() {
+    if (formStarted) return;
+    formStarted = true;
+    track('form_start', { form: 'wh_team_intake' });
+  }
+  document.querySelectorAll('#intake input, #intake textarea').forEach(el => {
+    if (el.type === 'hidden') return;
+    el.addEventListener('input', markStarted, { once: false });
+    el.addEventListener('change', markStarted, { once: false });
+  });
+
   // ───── localStorage draft ─────
   const DRAFT_KEY = 'wh-team-intake-draft-' + prefillSlug;
 
@@ -879,16 +922,36 @@
         // Clear draft
         localStorage.removeItem(DRAFT_KEY);
 
+        // GA4: funnel completion
+        try {
+          track('form_submit_success', {
+            form: 'wh_team_intake',
+            slug: $('done-slug').textContent || null
+          });
+        } catch(e) {}
+
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         btn.disabled = false;
         btn.textContent = 'Send to Mitch · Build my page →';
+        try {
+          track('form_submit_error', {
+            form: 'wh_team_intake',
+            reason: 'http_' + (res && res.status ? res.status : 'unknown')
+          });
+        } catch(e) {}
         alert('Something went wrong on our side. Text Mitch at 431-276-1044 and paste your answers — we\u2019ll get you sorted.');
       }
     } catch(err) {
       btn.disabled = false;
       btn.textContent = 'Send to Mitch · Build my page →';
+      try {
+        track('form_submit_error', {
+          form: 'wh_team_intake',
+          reason: 'network'
+        });
+      } catch(e) {}
       alert('Network error. Your answers are saved locally — try again, or text Mitch at 431-276-1044.');
     }
   });
