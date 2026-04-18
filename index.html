@@ -494,7 +494,8 @@
   </div>
   <!-- Ralph easter egg overlay -->
   <div id="ralph-eagle-overlay" role="dialog" aria-hidden="true" aria-label="Ralph's eagle">
-    <img id="ralph-eagle-img" src="assets/ralph-eagle.gif?v=1" alt="">
+    <img id="ralph-eagle-img" src="assets/ralph-eagle-big.webp?v=3" alt="">
+    <audio id="ralph-eagle-audio" src="assets/ralph-eagle.mp3?v=3" preload="auto" playsinline></audio>
     <div id="ralph-eagle-caption">Ralph has entered the chat.</div>
     <div id="ralph-eagle-hint">click anywhere to close</div>
   </div>
@@ -503,6 +504,7 @@
       var RALPH_HREF_MATCH = /ralph-wasserberg\.html$/i;
       var overlay = document.getElementById('ralph-eagle-overlay');
       var img = document.getElementById('ralph-eagle-img');
+      var audio = document.getElementById('ralph-eagle-audio');
       if (!overlay || !img) return;
 
       function wireRalphAvatar() {
@@ -537,22 +539,36 @@
 
       var autoCloseTimer = null;
       function openEagle() {
-        // Reset animation so repeat clicks replay cleanly.
+        // Reset CSS swoop so repeat clicks replay cleanly.
         img.style.animation = 'none';
         // eslint-disable-next-line no-unused-expressions
         img.offsetHeight;
         img.style.animation = '';
+        // Force the animated WebP to restart from frame 0 on replay.
+        var src = img.getAttribute('src');
+        img.setAttribute('src', '');
+        img.setAttribute('src', src);
         overlay.classList.add('active');
         overlay.setAttribute('aria-hidden', 'false');
+        // Play the audio track in sync with the animation.
+        if (audio) {
+          try {
+            audio.currentTime = 0;
+            audio.volume = 0.85;
+            var p = audio.play();
+            if (p && typeof p.catch === 'function') { p.catch(function () { /* autoplay blocked, silent fallback */ }); }
+          } catch (err) {}
+        }
         if (typeof gtag === 'function') {
           try { gtag('event', 'ralph_eagle', { rep_slug: 'ralph-wasserberg' }); } catch (err) {}
         }
         clearTimeout(autoCloseTimer);
-        autoCloseTimer = setTimeout(closeEagle, 6500);
+        autoCloseTimer = setTimeout(closeEagle, 5400);
       }
       function closeEagle() {
         overlay.classList.remove('active');
         overlay.setAttribute('aria-hidden', 'true');
+        if (audio) { try { audio.pause(); audio.currentTime = 0; } catch (err) {} }
         clearTimeout(autoCloseTimer);
       }
 
