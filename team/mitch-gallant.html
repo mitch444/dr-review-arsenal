@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meet Mitch Gallant · Winnipeg Hyundai</title>
+<meta name="description" content="No pressure. No surprises. Meet Mitch Gallant, Sales Manager at Winnipeg Hyundai — part of a team with 2,322 five-star reviews.">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-118XBY0BED"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-118XBY0BED');
+  gtag('set', { rep_name: 'Mitch Gallant', rep_slug: 'mitch-gallant', page_type: 'rep_microsite' });
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #002c5F;
+    --navy-ink:   #01153a;
+    --navy-2:     #1b477a;
+    --teal:       #007FA8;
+    --teal-dark:  #006b8f;
+    --ink:        #0b1220;
+    --muted:      #5a6374;
+    --line:       #e5e7ec;
+    --bg:         #fbfbfd;
+    --bg-soft:    #f2f4f8;
+    --cream:      #fff9f0;
+    --star:       #f5a524;
+    --success:    #16a34a;
+    --radius:     14px;
+    --radius-lg:  22px;
+    --shadow-sm:  0 1px 2px rgba(10, 20, 50, .06), 0 2px 6px rgba(10, 20, 50, .04);
+    --shadow-md:  0 10px 30px rgba(10, 20, 50, .08), 0 2px 6px rgba(10, 20, 50, .04);
+    --shadow-lg:  0 30px 60px rgba(10, 20, 50, .12), 0 4px 12px rgba(10, 20, 50, .06);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.55;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+
+  /* ─── TOP BAR ─── */
+  .topbar {
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    letter-spacing: .02em;
+  }
+  .topbar-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  }
+  .topbar-brand .h-mark {
+    width: 28px; height: 28px; border-radius: 999px;
+    background: #fff; color: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 15px; font-family: 'Inter', sans-serif;
+    letter-spacing: 0;
+  }
+  .topbar-main-link { color: #fff; opacity: .85; font-weight: 500; }
+  .topbar-main-link:hover { opacity: 1; }
+  .topbar-phone { font-weight: 600; }
+  .topbar-phone::before {
+    content: "📞"; margin-right: 6px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(0,127,168,.25), transparent 60%),
+      linear-gradient(180deg, var(--navy-ink) 0%, var(--navy) 60%, var(--navy-2) 100%);
+    color: #fff;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 80px;
+    background: linear-gradient(180deg, transparent, var(--bg));
+  }
+  .hero-inner {
+    max-width: 1180px; margin: 0 auto;
+    padding: 72px 28px 110px;
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 7px 14px; border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.18);
+    font-size: 12px; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: #cfe4ef;
+    backdrop-filter: blur(6px);
+  }
+  .eyebrow-dot {
+    width: 8px; height: 8px; border-radius: 999px;
+    background: #35d399; box-shadow: 0 0 0 4px rgba(53, 211, 153, .2);
+  }
+  .hero h1 {
+    font-family: 'Fraunces', 'Inter', serif;
+    font-weight: 700;
+    font-size: clamp(40px, 6.2vw, 68px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin: 22px 0 18px;
+  }
+  .hero h1 .accent { color: #8ddcfa; font-style: italic; }
+  .hero .lede {
+    font-size: clamp(17px, 1.5vw, 20px);
+    color: #d9e4ee;
+    max-width: 560px;
+    line-height: 1.55;
+    margin: 0 0 28px;
+  }
+  .hero .lede strong { color: #fff; font-weight: 600; }
+  .hero-proof {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin: 0 0 32px;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 14px; border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.16);
+    font-size: 13px; font-weight: 500;
+  }
+  .chip .chip-stars { color: var(--star); letter-spacing: 1px; }
+  .hero-ctas {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all .15s ease;
+    cursor: pointer;
+    border: 0;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: #fff; color: var(--navy);
+    box-shadow: var(--shadow-md);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+  .btn-ghost {
+    background: rgba(255,255,255,.08); color: #fff;
+    border: 1px solid rgba(255,255,255,.22);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.14); }
+  .btn-teal {
+    background: var(--teal); color: #fff;
+  }
+  .btn-teal:hover { background: var(--teal-dark); }
+
+  .hero-portrait-wrap {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-portrait {
+    width: min(440px, 100%);
+    aspect-ratio: 4/5;
+    border-radius: 28px;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+    border: 4px solid rgba(255,255,255,.1);
+  }
+  .hero-badge {
+    position: absolute; left: -14px; bottom: 30px;
+    background: #fff; color: var(--ink);
+    padding: 14px 18px; border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    display: flex; align-items: center; gap: 12px;
+    max-width: 260px;
+  }
+  .hero-badge .portrait-mini {
+    width: 40px; height: 40px; border-radius: 999px;
+    background: linear-gradient(135deg, #fde68a, #f59e0b);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; color: #7c2d12;
+  }
+  .hero-badge .b-stars { color: var(--star); letter-spacing: 1px; font-size: 13px; }
+  .hero-badge .b-quote { font-size: 13px; color: var(--muted); line-height: 1.3; font-style: italic; }
+  .hero-badge .b-quote strong { color: var(--ink); font-style: normal; font-weight: 700; }
+
+  /* ─── STICKY CTA (mobile) ─── */
+  .sticky-cta {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    background: #fff;
+    border-top: 1px solid var(--line);
+    padding: 10px 14px;
+    display: none;
+    gap: 8px;
+    z-index: 40;
+    box-shadow: 0 -8px 24px rgba(0,0,0,.08);
+  }
+  .sticky-cta .btn { flex: 1; justify-content: center; padding: 12px 10px; font-size: 14px; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 72px 28px; }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  .section-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 17px;
+    max-width: 640px;
+    margin-bottom: 44px;
+  }
+
+  /* ─── ABOUT ─── */
+  .about {
+    background: #fff;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about p {
+    font-size: 17px;
+    color: #2c3543;
+    line-height: 1.7;
+  }
+  .about p + p { margin-top: 16px; }
+  .about .pull {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--navy);
+    border-left: 3px solid var(--teal);
+    padding: 4px 0 4px 18px;
+    margin: 24px 0 0;
+    line-height: 1.4;
+  }
+  .credentials {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .cred {
+    background: var(--bg-soft);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid var(--line);
+  }
+  .cred-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 34px;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .cred-lbl {
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+  .specialties {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 22px;
+  }
+  .spec {
+    padding: 7px 14px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #3a4454;
+  }
+  .spec .ico { margin-right: 6px; }
+
+  /* ─── REVIEWS ─── */
+  .reviews-section { background: var(--bg); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .rev {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .rev:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .rev-stars { color: var(--star); letter-spacing: 2px; font-size: 15px; }
+  .rev-body {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 1.5;
+    color: #1c2534;
+    margin: 14px 0 18px;
+  }
+  .rev-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .rev-name { font-weight: 600; color: var(--ink); }
+  .rev-scenarios { display: flex; gap: 6px; flex-wrap: wrap; }
+  .scn {
+    padding: 3px 9px; background: var(--bg-soft); border-radius: 6px;
+    font-size: 11px; font-weight: 600; letter-spacing: .04em; color: var(--navy);
+  }
+  .reviews-footer {
+    display: flex; justify-content: center; margin-top: 36px;
+  }
+
+  /* ─── INVENTORY ─── */
+  .inventory-section {
+    background: #fff;
+    border-top: 1px solid var(--line);
+  }
+  .inv-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .inv-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .inv-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .inv-img {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #dee5ef, #b6c4d4);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--navy); font-weight: 700; font-size: 15px; letter-spacing: .08em;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .inv-img .placeholder-note {
+    position: absolute; bottom: 8px; right: 8px;
+    font-size: 10px; opacity: .6; text-transform: none; letter-spacing: 0;
+    font-weight: 500;
+  }
+  .inv-body { padding: 16px 18px; }
+  .inv-title { font-weight: 700; font-size: 15px; color: var(--ink); }
+  .inv-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .inv-price {
+    margin-top: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 17px;
+  }
+
+  /* ─── CTA BAND ─── */
+  .cta-band {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: #fff;
+    padding: 64px 28px;
+  }
+  .cta-inner {
+    max-width: 1180px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .cta-band h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 3.2vw, 36px);
+    line-height: 1.15;
+    margin: 0 0 14px;
+    letter-spacing: -0.015em;
+  }
+  .cta-band p { color: #cfdae6; margin: 0 0 24px; font-size: 16px; max-width: 520px; }
+  .cta-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ─── SOCIAL ─── */
+  .social-section { background: var(--bg); }
+  .social-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 22px;
+    align-items: stretch;
+  }
+  .social-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+  }
+  .social-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .ig-tile {
+    aspect-ratio: 1/1;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #e8edf5, #cbd5e1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--muted); font-weight: 600;
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  .ig-tile:nth-child(2) { background: linear-gradient(135deg, #fde68a, #fca5a5); color: #7c2d12; }
+  .ig-tile:nth-child(4) { background: linear-gradient(135deg, #a7f3d0, #6ee7b7); color: #064e3b; }
+  .ig-tile:nth-child(6) { background: linear-gradient(135deg, #bfdbfe, #93c5fd); color: #1e3a8a; }
+  .google-card {
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .big-rating {
+    font-family: 'Fraunces', serif;
+    font-size: 58px; line-height: 1; font-weight: 700; color: var(--navy);
+    letter-spacing: -0.03em;
+  }
+  .big-rating-sub {
+    color: var(--star); letter-spacing: 2px; font-size: 17px; margin-top: 6px;
+  }
+  .big-rating-note { color: var(--muted); font-size: 14px; margin-top: 8px; }
+  .social-link {
+    color: var(--teal);
+    font-weight: 600;
+    margin-top: 14px;
+    display: inline-block;
+    font-size: 14px;
+  }
+  .social-link::after { content: " →"; }
+
+  /* ─── TEAM ─── */
+  .team-section {
+    background: #fff;
+    border-top: 1px solid var(--line);
+  }
+  .team-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+  .team-card {
+    text-align: center;
+    padding: 20px 12px;
+    border-radius: var(--radius);
+    transition: background .15s ease;
+  }
+  .team-card:hover { background: var(--bg-soft); }
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 999px;
+    background: linear-gradient(135deg, #dde4ee, #b6c4d4);
+    margin: 0 auto 10px;
+    background-size: cover; background-position: center;
+  }
+  .team-name { font-weight: 700; font-size: 14px; }
+  .team-sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy-ink);
+    color: #b9c4d0;
+    padding: 48px 28px 32px;
+    font-size: 14px;
+  }
+  .foot-wrap {
+    max-width: 1180px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 40px;
+  }
+  .foot-brand { color: #fff; font-weight: 800; letter-spacing: .06em; }
+  .foot-wrap h4 {
+    color: #fff; margin: 0 0 14px; font-size: 14px;
+    text-transform: uppercase; letter-spacing: .12em;
+  }
+  .foot-wrap a { display: block; padding: 4px 0; color: #b9c4d0; }
+  .foot-wrap a:hover { color: #fff; }
+  .foot-bottom {
+    max-width: 1180px; margin: 32px auto 0;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,.1);
+    display: flex; justify-content: space-between; flex-wrap: wrap;
+    color: #7b8796; font-size: 12px; gap: 10px;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 980px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 22px 130px; }
+    .hero-portrait-wrap { order: -1; }
+    .hero-portrait { width: min(300px, 80%); }
+    .hero-badge { max-width: 220px; left: 0; bottom: 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 30px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .inv-grid { grid-template-columns: repeat(2, 1fr); }
+    .cta-inner { grid-template-columns: 1fr; }
+    .social-row { grid-template-columns: 1fr; }
+    .team-row { grid-template-columns: repeat(3, 1fr); }
+    .foot-wrap { grid-template-columns: 1fr 1fr; }
+    .sticky-cta { display: flex; }
+    section { padding: 56px 22px; }
+    .topbar-main-link { display: none; }
+  }
+  @media (max-width: 520px) {
+    .inv-grid { grid-template-columns: 1fr; }
+    .team-row { grid-template-columns: repeat(2, 1fr); }
+    .foot-wrap { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 38px; }
+    .hero-ctas .btn { flex: 1; justify-content: center; }
+    .chip { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── TOP BAR ── -->
+<div class="topbar">
+  <a href="https://www.winnipeghyundai.com" class="topbar-brand">
+    <span class="h-mark">H</span>
+    <span>Winnipeg Hyundai</span>
+  </a>
+  <a href="https://www.winnipeghyundai.com" class="topbar-main-link">winnipeghyundai.com</a>
+  <a href="tel:+12047745373" class="topbar-phone">(204) 774-5373</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" style="padding:0;">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow"><span class="eyebrow-dot"></span>Available now · Replies within minutes</span>
+      <h1>
+        No pressure.<br>
+        No surprises.<br>
+        <span class="accent">Just the car you actually want.</span>
+      </h1>
+      <p class="lede">
+        Hi, I'm <strong>Mitch Gallant</strong> — Sales Manager at Winnipeg Hyundai.
+        My job is to make buying a Hyundai feel less like a sales pitch and more like
+        a conversation with someone who's actually on your side.
+      </p>
+
+      <div class="hero-proof">
+        <span class="chip"><span class="chip-stars">★★★★★</span> 2,322 five-star reviews</span>
+        <span class="chip">🏡 3700 Portage Ave · Winnipeg</span>
+        <span class="chip">📞 (431) 276-1044 · reply in minutes</span>
+      </div>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="sms:+14312761044?&body=Hi%20Mitch%2C%20I%27m%20thinking%20about%20a%20Hyundai%20and%20have%20a%20few%20questions.">
+          💬 Text Mitch directly
+        </a>
+        <a class="btn btn-ghost" href="tel:+14312761044">
+          📞 Call
+        </a>
+        <a class="btn btn-ghost" href="mailto:mgallant@winnipeghyundai.com?subject=Quick%20question%20for%20Mitch">
+          ✉️ Email
+        </a>
+      </div>
+
+      <div style="margin-top:26px;font-family:'Fraunces',serif;font-style:italic;color:#8ddcfa;font-size:17px;letter-spacing:.01em;line-height:1.4;">
+        — Here to hear you say <strong style="font-style:normal;color:#fff;">"I love my car."</strong>
+      </div>
+    </div>
+
+    <div class="hero-portrait-wrap">
+      <img class="hero-portrait"
+           src="https://mitch444.github.io/dr-review-arsenal/assets/photos/mitch-gallant.jpg"
+           alt="Mitch Gallant, Sales Manager at Winnipeg Hyundai">
+      <div class="hero-badge">
+        <div class="portrait-mini">TI</div>
+        <div>
+          <div class="b-stars">★★★★★</div>
+          <div class="b-quote">"<strong>I love my car</strong>" — <em>triclund1, Apr 2026</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="section-label">About Mitch</div>
+      <h2 class="section-title">You don't need another pitch. You need someone who listens.</h2>
+      <p>
+        I've been with Winnipeg Hyundai since 2025, and I love helping customers
+        get every piece of information they actually need to make a great, informed
+        decision. Buying a car is one of the biggest purchases most people make —
+        my job is to make it feel easy, not high-pressure.
+      </p>
+      <p>
+        I lead the sales floor at Winnipeg Hyundai, which means when a deal gets
+        tricky — trade-in questions, financing curveballs, something broken in
+        the process — that's my desk. Your job is to tell me what you want out of
+        the car. My job is to make the rest of it disappear. <em>Je parle français
+        aussi</em> — en français, c'est la même chose : pas de pression, juste les
+        bonnes réponses.
+      </p>
+      <div class="pull">
+        "I love my car." — that's how 2,322 conversations have ended around here.
+        Let's make yours the next one.
+      </div>
+    </div>
+
+    <div>
+      <div class="credentials">
+        <div class="cred">
+          <div class="cred-num">2,322</div>
+          <div class="cred-lbl">Five-star reviews<br>across the team</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">4.9<span style="color:var(--star)">★</span></div>
+          <div class="cred-lbl">DealerRater avg<br>rating</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num">Sales<br>Manager</div>
+          <div class="cred-lbl">Floor-level accountability<br>on every deal</div>
+        </div>
+        <div class="cred">
+          <div class="cred-num" style="font-size:32px;">EN · FR</div>
+          <div class="cred-lbl">Bilingual service<br>en français aussi</div>
+        </div>
+      </div>
+
+      <div class="specialties">
+        <span class="spec"><span class="ico">🚙</span>Family SUVs</span>
+        <span class="spec"><span class="ico">🤝</span>First-time buyers</span>
+        <span class="spec"><span class="ico">💎</span>Repeat Hyundai owners</span>
+        <span class="spec"><span class="ico">💰</span>Financing help</span>
+      </div>
+
+      <!-- Mitch's current crush -->
+      <div style="margin-top:22px;padding:20px 22px;background:linear-gradient(135deg, var(--cream) 0%, #fff 100%);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-sm);">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:700;margin-bottom:6px;">On my radar right now</div>
+        <div style="font-family:'Fraunces',serif;font-size:20px;line-height:1.25;color:var(--ink);">2026 Palisade Ultimate Calligraphy <span style="color:var(--teal-dark);">NHL Edition</span></div>
+        <div style="font-size:13.5px;color:var(--muted);margin-top:6px;">Matte White. If you know, you know — ask me about it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REVIEWS ── -->
+<section class="reviews-section">
+  <div class="wrap">
+    <div class="section-label">What Winnipeg is saying</div>
+    <h2 class="section-title">Real people. Real receipts.</h2>
+    <p class="section-sub">
+      Every review below is a verified DealerRater review from someone who
+      actually bought a Hyundai here. No curation, no edits.
+    </p>
+
+    <div class="reviews-grid">
+      <div class="rev">
+        <div class="rev-stars">★★★★★</div>
+        <div class="rev-body">
+          "This is one of many vehicles we have purchased through Winnipeg Hyundai. There is a reason we keep coming back. We love our Hyundais and will keep returning and referring friends and family here!"
+        </div>
+        <div class="rev-meta">
+          <span class="rev-name">triclund1 · Apr 2026</span>
+          <span class="rev-scenarios">
+            <span class="scn">FAMILY SUV</span>
+            <span class="scn">REPEAT</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="rev">
+        <div class="rev-stars">★★★★★</div>
+        <div class="rev-body">
+          "Sonny was great to deal with! No sales pressures, accommodating, and very approachable. I recommend going to see him for your car shopping."
+        </div>
+        <div class="rev-meta">
+          <span class="rev-name">Rainier Ilicito · Mar 2026</span>
+          <span class="rev-scenarios">
+            <span class="scn">REFERRAL</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="rev">
+        <div class="rev-stars">★★★★★</div>
+        <div class="rev-body">
+          "The salesperson is a great guy — easy to communicate and professional. All questions got answered, and made a great deal."
+        </div>
+        <div class="rev-meta">
+          <span class="rev-name">yanjiahui02 · Apr 2026</span>
+          <span class="rev-scenarios">
+            <span class="scn">PROFESSIONAL</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="rev">
+        <div class="rev-stars">★★★★★</div>
+        <div class="rev-body">
+          "I really liked the experience of working with the Winnipeg Hyundai team — very friendly, and the work was done at a decent level. I recommend it to everyone, thank you!"
+        </div>
+        <div class="rev-meta">
+          <span class="rev-name">gubarr1986 · Mar 2026</span>
+          <span class="rev-scenarios">
+            <span class="scn">MULTILINGUAL</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-footer">
+      <a class="btn btn-teal" href="https://www.dealerrater.ca/sales/Mitch-Gallant-review-978656/">
+        Read all reviews on DealerRater →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── INVENTORY ── -->
+<section class="inventory-section">
+  <div class="wrap">
+    <div class="section-label">Looking around?</div>
+    <h2 class="section-title">A few I think you'll like.</h2>
+    <p class="section-sub">
+      Hand-picked from our current inventory. Questions on any of these?
+      Text me and I'll send you video, photos, and the real out-the-door number.
+    </p>
+
+    <div class="inv-grid">
+      <a class="inv-card" href="#">
+        <div class="inv-img">TUCSON HYBRID
+          <span class="placeholder-note">Placeholder · live feed coming</span>
+        </div>
+        <div class="inv-body">
+          <div class="inv-title">2025 Tucson Hybrid Ultimate</div>
+          <div class="inv-sub">AWD · Pearl White · 42 km</div>
+          <div class="inv-price">$44,995</div>
+        </div>
+      </a>
+
+      <a class="inv-card" href="#">
+        <div class="inv-img">SANTA FE
+          <span class="placeholder-note">Placeholder</span>
+        </div>
+        <div class="inv-body">
+          <div class="inv-title">2025 Santa Fe Calligraphy</div>
+          <div class="inv-sub">AWD · Earthy Brass · 18 km</div>
+          <div class="inv-price">$54,295</div>
+        </div>
+      </a>
+
+      <a class="inv-card" href="#">
+        <div class="inv-img">IONIQ 5
+          <span class="placeholder-note">Placeholder</span>
+        </div>
+        <div class="inv-body">
+          <div class="inv-title">2025 IONIQ 5 Preferred Long Range</div>
+          <div class="inv-sub">AWD · Digital Teal · 12 km</div>
+          <div class="inv-price">$58,199</div>
+        </div>
+      </a>
+
+      <a class="inv-card" href="#">
+        <div class="inv-img">ELANTRA
+          <span class="placeholder-note">Placeholder</span>
+        </div>
+        <div class="inv-body">
+          <div class="inv-title">2025 Elantra Preferred</div>
+          <div class="inv-sub">FWD · Phantom Black · 26 km</div>
+          <div class="inv-price">$28,749</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BAND ── -->
+<section class="cta-band" style="padding:0;">
+  <div class="cta-inner" style="padding:72px 0;">
+    <div>
+      <h2>Tell me what you're looking for.<br>I'll do the rest of the work.</h2>
+      <p>
+        Tell me what you drive today, what bugs you about it, and what you wish
+        it did better. I'll come back with two or three Hyundais that make sense —
+        no pitch decks, no pressure, no "let me talk to my manager" routines.
+      </p>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="sms:+14312761044?&body=Hi%20Mitch%2C%20here%27s%20what%20I%27m%20looking%20for%3A%20">💬 Start a text</a>
+        <a class="btn btn-teal" href="https://www.winnipeghyundai.com/book-a-test-drive">🚗 Book a test drive</a>
+      </div>
+    </div>
+
+    <div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:26px;">
+        <div style="font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:#8ddcfa;font-weight:700;margin-bottom:10px;">Direct to me</div>
+        <div style="font-family:'Fraunces',serif;font-size:26px;letter-spacing:-.01em;margin-bottom:18px;line-height:1.2;">
+          Mitch Gallant<br>
+          <span style="font-size:16px;color:#cfdae6;font-family:'Inter',sans-serif;font-style:normal;">Sales Manager · Winnipeg Hyundai</span>
+        </div>
+        <div style="display:grid;gap:10px;font-size:15px;">
+          <a href="tel:+14312761044" style="color:#fff;border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:10px;">📞 <span style="opacity:.7;font-size:12px;margin-right:8px;">CALL/TEXT</span>(431) 276-1044</a>
+          <a href="mailto:mgallant@winnipeghyundai.com" style="color:#fff;border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:10px;">✉️ <span style="opacity:.7;font-size:12px;margin-right:8px;">EMAIL</span>mgallant@winnipeghyundai.com</a>
+          <a href="https://maps.google.com/?q=3700+Portage+Ave+Winnipeg" style="color:#fff;">🏡 <span style="opacity:.7;font-size:12px;margin-right:8px;">VISIT</span>3700 Portage Ave, Winnipeg</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOCIAL ── -->
+<section class="social-section">
+  <div class="wrap">
+    <div class="section-label">On the feed</div>
+    <h2 class="section-title">See what's happening at the dealership.</h2>
+
+    <div class="social-row">
+      <div class="social-card">
+        <h3>📸 @winnipeg_hyundai</h3>
+        <div style="color:var(--muted);font-size:14px;">New arrivals, community events, delivery day photos.</div>
+        <div class="ig-grid">
+          <div class="ig-tile">Delivery Day</div>
+          <div class="ig-tile">IONIQ 5 Arrived</div>
+          <div class="ig-tile">Community</div>
+          <div class="ig-tile">Tucson N Line</div>
+          <div class="ig-tile">Behind Scenes</div>
+          <div class="ig-tile">Santa Fe</div>
+        </div>
+        <a href="https://www.instagram.com/winnipeg_hyundai/" class="social-link">Follow on Instagram</a>
+      </div>
+
+      <div class="social-card google-card">
+        <div>
+          <h3>Google Reviews</h3>
+          <div style="color:var(--muted);font-size:14px;">Across every channel, one thing stays consistent.</div>
+        </div>
+        <div>
+          <div class="big-rating">4.9<span style="font-size:32px;color:var(--star);margin-left:4px;">★</span></div>
+          <div class="big-rating-sub">★★★★★</div>
+          <div class="big-rating-note">From 2,322 verified reviews</div>
+        </div>
+        <a href="https://www.google.com/maps/place/Winnipeg+Hyundai" class="social-link">See Google reviews</a>
+      </div>
+
+      <div class="social-card">
+        <h3>👍 Facebook</h3>
+        <div style="color:var(--muted);font-size:14px;">
+          Specials, community initiatives, and the occasional
+          behind-the-scenes from the Portage Ave. team.
+        </div>
+        <div style="margin-top:22px;padding:20px;background:var(--bg-soft);border-radius:12px;font-style:italic;color:#2c3543;font-family:'Fraunces',serif;font-size:16px;">
+          "Best dealership experience I've had in 20 years of buying cars. Straight shooters start to finish."
+          <div style="margin-top:10px;font-style:normal;font-family:'Inter',sans-serif;font-size:12px;color:var(--muted);">— Recent FB review</div>
+        </div>
+        <a href="https://www.facebook.com/wpghyundai" class="social-link">Follow on Facebook</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEAM ── -->
+<section class="team-section">
+  <div class="wrap">
+    <div class="section-label">The rest of the team</div>
+    <h2 class="section-title">Not sure I'm the right fit? Meet the rest of the floor.</h2>
+    <p class="section-sub">
+      19 advisors. 2,322 reviews. Every single one of them has been trained to ask
+      what you need before telling you what we have.
+    </p>
+
+    <div class="team-row">
+      <a class="team-card" href="#">
+        <div class="team-avatar" style="background-image:url('https://mitch444.github.io/dr-review-arsenal/assets/photos/bill-turnbull.jpg')"></div>
+        <div class="team-name">Bill Turnbull</div>
+        <div class="team-sub">335 reviews · 4.98★</div>
+      </a>
+      <a class="team-card" href="#">
+        <div class="team-avatar" style="background-image:url('https://mitch444.github.io/dr-review-arsenal/assets/photos/chris-martin.jpg')"></div>
+        <div class="team-name">Chris Martin</div>
+        <div class="team-sub">439 reviews · 4.91★</div>
+      </a>
+      <a class="team-card" href="#">
+        <div class="team-avatar" style="background-image:url('https://mitch444.github.io/dr-review-arsenal/assets/photos/kaelen-honke.jpg')"></div>
+        <div class="team-name">Kaelen Honke</div>
+        <div class="team-sub">279 reviews · 4.92★</div>
+      </a>
+      <a class="team-card" href="#">
+        <div class="team-avatar" style="background-image:url('https://mitch444.github.io/dr-review-arsenal/assets/photos/brady-hrymak.jpg')"></div>
+        <div class="team-name">Brady Hrymak</div>
+        <div class="team-sub">223 reviews · 4.92★</div>
+      </a>
+      <a class="team-card" href="#">
+        <div class="team-avatar" style="background-image:url('https://mitch444.github.io/dr-review-arsenal/assets/photos/eric-anderson.jpg')"></div>
+        <div class="team-name">Eric Anderson</div>
+        <div class="team-sub">188 reviews · 4.93★</div>
+      </a>
+      <a class="team-card" href="#">
+        <div class="team-avatar" style="background-image:url('https://mitch444.github.io/dr-review-arsenal/assets/photos/doug-mccartney.jpg')"></div>
+        <div class="team-name">Doug McCartney</div>
+        <div class="team-sub">173 reviews · 4.91★</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a class="btn btn-ghost" style="background:var(--bg-soft);color:var(--navy);border:1px solid var(--line);" href="#">View all 19 advisors →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="foot-brand">WINNIPEG HYUNDAI</div>
+      <div style="margin-top:14px;line-height:1.7;">
+        3700 Portage Ave.<br>
+        Winnipeg, MB R3K 0Z8<br>
+        <a href="tel:+12047745373" style="display:inline;padding:0;color:#b9c4d0;">(204) 774-5373</a>
+      </div>
+      <div style="display:flex;gap:14px;margin-top:18px;font-size:18px;">
+        <a href="https://www.facebook.com/wpghyundai" title="Facebook">🅕</a>
+        <a href="https://www.instagram.com/winnipeg_hyundai/" title="Instagram">📷</a>
+        <a href="https://www.youtube.com/@winnipeghyundai2649" title="YouTube">▶</a>
+        <a href="https://www.tiktok.com/@winnipeg.hyundai" title="TikTok">♪</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Mitch</h4>
+      <a href="tel:+14312761044">(431) 276-1044</a>
+      <a href="mailto:mgallant@winnipeghyundai.com">mgallant@winnipeghyundai.com</a>
+      <a href="https://www.dealerrater.ca/sales/Mitch-Gallant-review-978656/">DealerRater profile</a>
+    </div>
+
+    <div>
+      <h4>Hours</h4>
+      <div style="line-height:1.9;">
+        Mon–Thu &nbsp;9am–9pm<br>
+        Fri–Sat &nbsp;9am–6pm<br>
+        Sun &nbsp;Closed
+      </div>
+    </div>
+
+    <div>
+      <h4>Explore</h4>
+      <a href="https://www.winnipeghyundai.com">Main website</a>
+      <a href="https://www.winnipeghyundai.com/inventory">Inventory</a>
+      <a href="https://www.winnipeghyundai.com/service">Service</a>
+      <a href="https://www.winnipeghyundai.com/book-a-test-drive">Book a test drive</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div>© 2026 Winnipeg Hyundai. All rights reserved.</div>
+    <div>Built with care by the WH team.</div>
+  </div>
+</footer>
+
+<!-- ── STICKY MOBILE CTA ── -->
+<div class="sticky-cta">
+  <a class="btn btn-teal" href="sms:+14312761044?&body=Hi%20Mitch%2C">💬 Text</a>
+  <a class="btn btn-ghost" style="background:var(--bg-soft);color:var(--navy);border:1px solid var(--line);" href="tel:+14312761044">📞 Call</a>
+  <a class="btn btn-ghost" style="background:var(--bg-soft);color:var(--navy);border:1px solid var(--line);" href="mailto:mgallant@winnipeghyundai.com">✉️ Email</a>
+</div>
+
+</body>
+</html>
