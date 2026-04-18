@@ -431,15 +431,39 @@ h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
 }
 .rep-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px; box-shadow: var(--shadow);
+  border-radius: 14px; box-shadow: var(--shadow);
   transition: transform .08s ease, box-shadow .08s ease;
-  display: block; color: inherit;
+  display: flex; flex-direction: column;
+  overflow: hidden;
 }
 .rep-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 2px 4px rgba(20,30,60,.08), 0 10px 30px rgba(20,30,60,.08);
-  text-decoration: none;
 }
+.rep-card-main {
+  display: block; color: inherit; padding: 20px 20px 16px;
+  flex: 1;
+}
+.rep-card-main:hover { text-decoration: none; }
+.rep-card-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 20px; background: #f3f6fa;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px; font-weight: 600;
+  color: var(--primary); letter-spacing: .01em;
+  transition: background .12s ease, color .12s ease;
+}
+.rep-card-cta:hover { background: var(--primary); color: #fff; text-decoration: none; }
+.rep-card-cta .cta-label { display: flex; align-items: center; gap: 7px; }
+.rep-card-cta .cta-label::before {
+  content: "✎"; font-size: 14px; opacity: .85;
+}
+.rep-card-cta .cta-arrow { font-weight: 700; }
+.rep-card-cta.done {
+  background: #ecfdf5; color: #065f46;
+}
+.rep-card-cta.done:hover { background: #065f46; color: #fff; }
+.rep-card-cta.done .cta-label::before { content: "✓"; }
 .rep-avatar {
   width: 56px; height: 56px; border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), #1e4a80);
@@ -661,12 +685,21 @@ COMMON_JS = r"""
       return;
     }
 
-    // 3) Index page: rep card click — fires rep_card_click with that rep's name
-    var card = e.target.closest("a.rep-card");
-    if (card) {
-      var nameEl = card.querySelector(".rep-name");
+    // 3) Index page: rep card main link — fires rep_card_click
+    var cardMain = e.target.closest("a.rep-card-main");
+    if (cardMain) {
+      var nameEl = cardMain.querySelector(".rep-name");
       var rn = nameEl ? nameEl.textContent.trim() : null;
       if (rn) track("rep_card_click", { rep_name: rn });
+      return;
+    }
+
+    // 4) Index page: "Build your customer page" CTA — fires intake_form_open
+    var ctaBtn = e.target.closest("a.rep-card-cta");
+    if (ctaBtn) {
+      var rep = ctaBtn.getAttribute("data-rep") || null;
+      track("intake_form_open", { rep_name: rep });
+      return;
     }
   });
 
@@ -705,6 +738,7 @@ COMMON_JS = r"""
 
 
 def render_index(reps: list[dict]) -> str:
+    from urllib.parse import urlencode
     reps_sorted = sorted(reps, key=lambda r: -r["count"])
     cards = []
     for r in reps_sorted:
@@ -716,17 +750,40 @@ def render_index(reps: list[dict]) -> str:
                 '<div class="rep-avatar rep-avatar-photo" '
                 f'style="background-image:url({photo_url!r})"></div>'
             )
+            photo_full = f"https://mitch444.github.io/dr-review-arsenal/assets/photos/{r['slug']}.jpg"
         else:
             avatar_html = f'<div class="rep-avatar">{html.escape(initials)}</div>'
+            photo_full = ""
+
+        # Pre-filled intake-form URL — opens in a new tab so the manager
+        # tool stays intact behind it. Every param makes the form feel
+        # pre-built for that rep.
+        form_params = urlencode({
+            "name":    r["name"],
+            "slug":    r["slug"],
+            "title":   "Sales Consultant",
+            "reviews": r["count"],
+            "rating":  f"{r['avg']:.2f}",
+            "photo":   photo_full,
+        })
+        form_url = f"form.html?{form_params}"
+
         cards.append(f"""
-      <a class="rep-card" href="reps/{r["slug"]}.html">
-        {avatar_html}
-        <div class="rep-name">{html.escape(r["name"])}</div>
-        <div class="rep-meta">
-          <span class="rep-stars">{"★" * int(round(r["avg"]))}</span>
-          {r["count"]} reviews · {r["avg"]:.2f}★
-        </div>
-      </a>""")
+      <div class="rep-card">
+        <a class="rep-card-main" href="reps/{r["slug"]}.html">
+          {avatar_html}
+          <div class="rep-name">{html.escape(r["name"])}</div>
+          <div class="rep-meta">
+            <span class="rep-stars">{"★" * int(round(r["avg"]))}</span>
+            {r["count"]} reviews · {r["avg"]:.2f}★
+          </div>
+        </a>
+        <a class="rep-card-cta" href="{form_url}" target="_blank" rel="noopener"
+           data-rep="{html.escape(r["name"])}">
+          <span class="cta-label">Build your customer page</span>
+          <span class="cta-arrow">→</span>
+        </a>
+      </div>""")
 
     stats_total = sum(r["count"] for r in reps)
     top = reps_sorted[0] if reps_sorted else None
