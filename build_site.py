@@ -40,6 +40,34 @@ DEALER_ID = "34932"
 DR_DEALER_URL = f"https://www.dealerrater.ca/dealer/Winnipeg-Hyundai-review-{DEALER_ID}/"
 DEALERSHIP = "Winnipeg Hyundai"
 
+# ── Analytics ────────────────────────────────────────────────────────────────
+GA_TRACKING_ID = "G-118XBY0BED"
+
+
+def ga_head_html(rep_name: str | None = None) -> str:
+    """Google Analytics 4 (gtag.js) snippet for <head>.
+
+    If rep_name is provided (rep pages), sets it as a default event parameter
+    so every gtag() event from that page inherits rep_name — makes GA4 reports
+    filterable by rep without passing rep_name on every event call.
+    """
+    rep_block = ""
+    if rep_name:
+        rep_js = json.dumps(rep_name)
+        rep_block = (
+            f"\n    gtag('set', {{'rep_name': {rep_js}}});"
+            f"\n    window.REP_NAME = {rep_js};"
+        )
+    return f"""<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={GA_TRACKING_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){{dataLayer.push(arguments);}}
+    gtag('js', new Date());
+    gtag('config', '{GA_TRACKING_ID}');{rep_block}
+  </script>"""
+
+
 # ── Scenarios ────────────────────────────────────────────────────────────────
 # Mitch's original 7 buyer contexts, then 9 expanded tags (rep qualities +
 # product type + loyalty signals). Ordered so the buyer-context pills come
@@ -570,7 +598,17 @@ h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
 
 COMMON_JS = r"""
 (function () {
-  // --- Click-to-copy with visual feedback ---
+  // ── Analytics helper ────────────────────────────────────────────────
+  // Fires a GA4 event. Automatically attaches window.REP_NAME (set on rep
+  // pages by gtag('set',...) in <head>) if caller didn't pass rep_name.
+  function track(eventName, params) {
+    if (typeof window.gtag !== 'function') return;
+    var payload = Object.assign({}, params || {});
+    if (window.REP_NAME && !payload.rep_name) payload.rep_name = window.REP_NAME;
+    window.gtag('event', eventName, payload);
+  }
+
+  // ── Click-to-copy with visual feedback ──────────────────────────────
   function copyToClipboard(text, btn) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(
@@ -597,37 +635,70 @@ COMMON_JS = r"""
       btn.innerHTML = orig;
     }, 1400);
   }
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-copy]");
-    if (!btn) return;
-    e.preventDefault();
-    copyToClipboard(btn.getAttribute("data-copy"), btn);
+
+  // ── Global click handlers ───────────────────────────────────────────
+  document.addEventListener("click", function (e) {
+    // 1) Copy button — copies to clipboard AND fires review_copy event
+    var copyBtn = e.target.closest("[data-copy]");
+    if (copyBtn) {
+      e.preventDefault();
+      copyToClipboard(copyBtn.getAttribute("data-copy"), copyBtn);
+      var label = (copyBtn.textContent || "").trim().toLowerCase();
+      var variant = label.indexOf("email") !== -1 ? "email_body" : "text_blurb";
+      track("review_copy", { copy_variant: variant });
+      return;
+    }
+
+    // 2) SMS / Mailto send buttons — fire review_text_send / review_email_send
+    var linkBtn = e.target.closest("a.btn");
+    if (linkBtn) {
+      var href = linkBtn.getAttribute("href") || "";
+      if (href.indexOf("sms:") === 0) {
+        track("review_text_send", { channel: "sms" });
+      } else if (href.indexOf("mailto:") === 0) {
+        track("review_email_send", { channel: "mailto" });
+      }
+      return;
+    }
+
+    // 3) Index page: rep card click — fires rep_card_click with that rep's name
+    var card = e.target.closest("a.rep-card");
+    if (card) {
+      var nameEl = card.querySelector(".rep-name");
+      var rn = nameEl ? nameEl.textContent.trim() : null;
+      if (rn) track("rep_card_click", { rep_name: rn });
+    }
   });
 
-  // --- Scenario filter pills ---
-  const pills = document.querySelectorAll(".pill[data-scenario]");
-  const cards = document.querySelectorAll(".review[data-scenarios]");
+  // ── Scenario filter pills (rep pages) ───────────────────────────────
+  var pills = document.querySelectorAll(".pill[data-scenario]");
+  var cards = document.querySelectorAll(".review[data-scenarios]");
   function applyFilter(scenario) {
-    pills.forEach((p) => p.classList.toggle("active", p.dataset.scenario === scenario));
-    let visible = 0;
-    cards.forEach((c) => {
-      let show;
+    pills.forEach(function (p) {
+      p.classList.toggle("active", p.dataset.scenario === scenario);
+    });
+    var visible = 0;
+    cards.forEach(function (c) {
+      var show;
       if (scenario === "all") {
         show = true;
       } else if (scenario === "__named__") {
         show = c.dataset.named === "1";
       } else {
-        const s = (c.dataset.scenarios || "").split("|");
+        var s = (c.dataset.scenarios || "").split("|");
         show = s.indexOf(scenario) !== -1;
       }
       c.style.display = show ? "" : "none";
       if (show) visible++;
     });
-    const empty = document.getElementById("empty-state");
+    var empty = document.getElementById("empty-state");
     if (empty) empty.style.display = visible === 0 ? "" : "none";
   }
-  pills.forEach((p) => {
-    p.addEventListener("click", () => applyFilter(p.dataset.scenario));
+  pills.forEach(function (p) {
+    p.addEventListener("click", function () {
+      applyFilter(p.dataset.scenario);
+      track("scenario_filter", { scenario: p.dataset.scenario });
+    });
   });
 })();
 """
@@ -667,6 +738,7 @@ def render_index(reps: list[dict]) -> str:
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Review Arsenal · {DEALERSHIP}</title>
   <link rel="stylesheet" href="assets/styles.css">
+  {ga_head_html()}
 </head>
 <body>
   <div class="container">
@@ -689,6 +761,7 @@ def render_index(reps: list[dict]) -> str:
       Built from {stats_total:,} DealerRater reviews · regenerate via <code>python3 build_site.py</code>
     </div>
   </div>
+  <script src="assets/app.js"></script>
 </body>
 </html>"""
 
@@ -838,6 +911,7 @@ def render_rep_page(rep: dict, reviews: list[dict]) -> str:
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{html.escape(rep["name"])} · Review Arsenal</title>
   <link rel="stylesheet" href="../assets/styles.css">
+  {ga_head_html(rep["name"])}
 </head>
 <body>
   <div class="container">
