@@ -799,10 +799,18 @@
   // ───── localStorage draft ─────
   const DRAFT_KEY = 'wh-team-intake-draft-' + prefillSlug;
 
+  // Hidden fields carry URL-pre-fill data (slug, rating, reviews).
+  // They must NEVER be restored from localStorage — the URL is the
+  // source of truth, and an old draft would overwrite fresh params.
+  function isRestorable(el) {
+    return el.type !== 'hidden' && el.name !== '_honey' && !el.name.startsWith('_');
+  }
+
   function saveDraft() {
     try {
       const data = {};
       document.querySelectorAll('#intake input, #intake textarea').forEach(el => {
+        if (!isRestorable(el)) return;
         if (el.type === 'checkbox') data[el.name + ':' + el.value] = el.checked;
         else if (el.type === 'radio') { if (el.checked) data[el.name] = el.value; }
         else if (el.name) data[el.name] = el.value;
@@ -819,6 +827,7 @@
       if (!raw) return;
       const data = JSON.parse(raw);
       document.querySelectorAll('#intake input, #intake textarea').forEach(el => {
+        if (!isRestorable(el)) return;
         if (el.type === 'checkbox') {
           const key = el.name + ':' + el.value;
           if (data[key] !== undefined) el.checked = data[key];
