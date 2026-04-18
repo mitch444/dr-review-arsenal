@@ -30,23 +30,22 @@
     }
     #ralph-eagle-overlay.active { display: flex; opacity: 1; }
     #ralph-eagle-img {
-      width: min(92vw, 1100px);
-      height: auto;
-      max-height: 86vh;
-      filter: drop-shadow(0 35px 70px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(246,198,96,.25));
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+      object-position: center center;
+      filter: drop-shadow(0 35px 70px rgba(0,0,0,.55)) drop-shadow(0 0 50px rgba(246,198,96,.25));
       opacity: 0;
       transform: scale(.3) translateY(80px) rotate(-8deg);
       will-change: transform, opacity;
     }
     #ralph-eagle-overlay.active #ralph-eagle-img {
-      animation: ralph-eagle-swoop 2800ms cubic-bezier(.19,1,.22,1) forwards;
+      animation: ralph-eagle-swoop 2000ms cubic-bezier(.19,1,.22,1) forwards;
     }
     @keyframes ralph-eagle-swoop {
-      0%   { opacity: 0; transform: scale(.3) translateY(80px) rotate(-8deg); }
-      25%  { opacity: 1; transform: scale(1.12) translateY(-14px) rotate(3deg); }
-      50%  { opacity: 1; transform: scale(.98) translateY(6px) rotate(-1deg); }
-      72%  { opacity: 1; transform: scale(1.03) translateY(-4px) rotate(1deg); }
-     100%  { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+      0%   { opacity: 0; transform: scale(.35) translateY(60px); }
+      45%  { opacity: 1; transform: scale(1.04) translateY(-6px); }
+     100%  { opacity: 1; transform: scale(1) translateY(0); }
     }
     #ralph-eagle-caption {
       position: absolute; bottom: 34px; left: 0; right: 0;
@@ -495,7 +494,7 @@
   </div>
   <!-- Ralph easter egg overlay -->
   <div id="ralph-eagle-overlay" role="dialog" aria-hidden="true" aria-label="Ralph's eagle">
-    <img id="ralph-eagle-img" src="assets/ralph-eagle.svg" alt="">
+    <img id="ralph-eagle-img" src="assets/ralph-eagle.gif" alt="">
     <div id="ralph-eagle-caption">Ralph has entered the chat.</div>
     <div id="ralph-eagle-hint">click anywhere to close</div>
   </div>
@@ -549,7 +548,7 @@
           try { gtag('event', 'ralph_eagle', { rep_slug: 'ralph-wasserberg' }); } catch (err) {}
         }
         clearTimeout(autoCloseTimer);
-        autoCloseTimer = setTimeout(closeEagle, 5200);
+        autoCloseTimer = setTimeout(closeEagle, 6500);
       }
       function closeEagle() {
         overlay.classList.remove('active');
