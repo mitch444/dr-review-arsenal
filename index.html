@@ -5,6 +5,70 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Review Arsenal · Winnipeg Hyundai</title>
   <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    /* Ralph easter egg: click his head, eagle descends. */
+    .ralph-eagle-trigger { cursor: pointer; position: relative; isolation: isolate; }
+    .ralph-eagle-trigger::after {
+      content: ""; position: absolute; inset: -3px; border-radius: inherit;
+      box-shadow: 0 0 0 2px rgba(246, 198, 96, 0);
+      transition: box-shadow .25s ease;
+      pointer-events: none;
+    }
+    .ralph-eagle-trigger:hover::after {
+      box-shadow: 0 0 0 2px rgba(246, 198, 96, .85), 0 0 28px rgba(246, 198, 96, .35);
+    }
+    #ralph-eagle-overlay {
+      position: fixed; inset: 0;
+      display: none; align-items: center; justify-content: center;
+      background: radial-gradient(ellipse at center, rgba(8,18,34,.55) 0%, rgba(4,9,18,.92) 80%);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 9999;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .35s ease;
+    }
+    #ralph-eagle-overlay.active { display: flex; opacity: 1; }
+    #ralph-eagle-img {
+      width: min(92vw, 1100px);
+      height: auto;
+      max-height: 86vh;
+      filter: drop-shadow(0 35px 70px rgba(0,0,0,.55)) drop-shadow(0 0 40px rgba(246,198,96,.25));
+      opacity: 0;
+      transform: scale(.3) translateY(80px) rotate(-8deg);
+      will-change: transform, opacity;
+    }
+    #ralph-eagle-overlay.active #ralph-eagle-img {
+      animation: ralph-eagle-swoop 2800ms cubic-bezier(.19,1,.22,1) forwards;
+    }
+    @keyframes ralph-eagle-swoop {
+      0%   { opacity: 0; transform: scale(.3) translateY(80px) rotate(-8deg); }
+      25%  { opacity: 1; transform: scale(1.12) translateY(-14px) rotate(3deg); }
+      50%  { opacity: 1; transform: scale(.98) translateY(6px) rotate(-1deg); }
+      72%  { opacity: 1; transform: scale(1.03) translateY(-4px) rotate(1deg); }
+     100%  { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+    }
+    #ralph-eagle-caption {
+      position: absolute; bottom: 34px; left: 0; right: 0;
+      text-align: center;
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(15px, 2vw, 20px);
+      color: rgba(255, 233, 180, .78);
+      letter-spacing: .02em;
+      opacity: 0;
+      transition: opacity .6s ease 1.4s;
+    }
+    #ralph-eagle-overlay.active #ralph-eagle-caption { opacity: 1; }
+    #ralph-eagle-hint {
+      position: absolute; top: 22px; right: 26px;
+      font-size: 12px; color: rgba(255,255,255,.55);
+      letter-spacing: .08em; text-transform: uppercase;
+      opacity: 0;
+      transition: opacity .5s ease 1.8s;
+    }
+    #ralph-eagle-overlay.active #ralph-eagle-hint { opacity: 1; }
+  </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-118XBY0BED"></script>
   <script>
@@ -25,7 +89,7 @@
     </div>
     <h1>Pick a rep.</h1>
     <p class="lead">
-      Every card opens a rep's personal review library — tagged by scenario,
+      Every card opens a rep's personal review library, tagged by scenario,
       ready to text or email in one tap. Reps bookmark their own page.
     </p>
     <div class="grid">
@@ -429,6 +493,82 @@
       Built from 2,322 DealerRater reviews · regenerate via <code>python3 build_site.py</code>
     </div>
   </div>
+  <!-- Ralph easter egg overlay -->
+  <div id="ralph-eagle-overlay" role="dialog" aria-hidden="true" aria-label="Ralph's eagle">
+    <img id="ralph-eagle-img" src="assets/ralph-eagle.svg" alt="">
+    <div id="ralph-eagle-caption">Ralph has entered the chat.</div>
+    <div id="ralph-eagle-hint">click anywhere to close</div>
+  </div>
+  <script>
+    (function () {
+      var RALPH_HREF_MATCH = /ralph-wasserberg\.html$/i;
+      var overlay = document.getElementById('ralph-eagle-overlay');
+      var img = document.getElementById('ralph-eagle-img');
+      if (!overlay || !img) return;
+
+      function wireRalphAvatar() {
+        var cards = document.querySelectorAll('.rep-card');
+        cards.forEach(function (card) {
+          var main = card.querySelector('a.rep-card-main');
+          if (!main) return;
+          var href = main.getAttribute('href') || '';
+          if (!RALPH_HREF_MATCH.test(href)) return;
+          var avatar = card.querySelector('.rep-avatar');
+          if (!avatar || avatar.dataset.ralphEagle === '1') return;
+
+          avatar.dataset.ralphEagle = '1';
+          avatar.classList.add('ralph-eagle-trigger');
+          avatar.setAttribute('role', 'button');
+          avatar.setAttribute('tabindex', '0');
+          avatar.setAttribute('aria-label', "Click Ralph's photo for a surprise");
+
+          avatar.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openEagle();
+          });
+          avatar.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openEagle();
+            }
+          });
+        });
+      }
+
+      var autoCloseTimer = null;
+      function openEagle() {
+        // Reset animation so repeat clicks replay cleanly.
+        img.style.animation = 'none';
+        // eslint-disable-next-line no-unused-expressions
+        img.offsetHeight;
+        img.style.animation = '';
+        overlay.classList.add('active');
+        overlay.setAttribute('aria-hidden', 'false');
+        if (typeof gtag === 'function') {
+          try { gtag('event', 'ralph_eagle', { rep_slug: 'ralph-wasserberg' }); } catch (err) {}
+        }
+        clearTimeout(autoCloseTimer);
+        autoCloseTimer = setTimeout(closeEagle, 5200);
+      }
+      function closeEagle() {
+        overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
+        clearTimeout(autoCloseTimer);
+      }
+
+      overlay.addEventListener('click', closeEagle);
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) closeEagle();
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', wireRalphAvatar);
+      } else {
+        wireRalphAvatar();
+      }
+    })();
+  </script>
   <script src="assets/app.js"></script>
 </body>
 </html>
