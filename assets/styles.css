@@ -234,3 +234,68 @@ h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
 .rep-card-cta.done { background: #ecfdf5; color: #065f46; }
 .rep-card-cta.done:hover { background: #065f46; color: #fff; }
 .rep-card-cta.done .cta-label::before { content: "✓"; }
+
+/* --- Rep card live/pending pill button (top-right of card) --- */
+.rep-card { position: relative; }
+.rep-card-live-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px 6px 10px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .14s ease, box-shadow .14s ease, background .14s ease, color .14s ease;
+}
+.rep-card-live-btn .rep-live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  display: inline-block;
+}
+.rep-card-live-btn .rep-live-arrow { font-weight: 700; opacity: .9; }
+
+/* LIVE — emerald gradient, pulsing dot, lifts on hover */
+.rep-card-live-btn:not(.rep-card-live-btn-pending) {
+  color: #fff;
+  background: linear-gradient(135deg, #10b981 0%, #047857 55%, #064e3b 100%);
+  box-shadow: 0 2px 8px rgba(4, 120, 87, .35),
+              inset 0 0 0 1px rgba(255, 255, 255, .12);
+}
+.rep-card-live-btn:not(.rep-card-live-btn-pending):hover {
+  transform: translateY(-1px);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 6px 14px rgba(4, 120, 87, .45),
+              inset 0 0 0 1px rgba(255, 255, 255, .22);
+}
+.rep-card-live-btn:not(.rep-card-live-btn-pending) .rep-live-dot {
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, .35);
+  animation: rep-live-pulse 1.8s ease-in-out infinite;
+}
+@keyframes rep-live-pulse {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 2px rgba(255,255,255,.35); }
+  50%      { opacity: .55; box-shadow: 0 0 0 5px rgba(255,255,255,.10); }
+}
+
+/* PENDING — greyed-out placeholder, not clickable */
+.rep-card-live-btn-pending {
+  background: #eef1f5;
+  color: #8a95a5;
+  box-shadow: inset 0 0 0 1px var(--border);
+  cursor: not-allowed;
+  pointer-events: none;
+  user-select: none;
+}
+.rep-card-live-btn-pending .rep-live-dot {
+  background: #c5ccd6;
+}
+
+/* Live mode hides the footer intake CTA */
+.rep-card-live .rep-card-cta { display: none; }

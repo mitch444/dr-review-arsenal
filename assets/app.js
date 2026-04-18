@@ -77,6 +77,14 @@
       track("intake_form_open", { rep_name: rep });
       return;
     }
+    // Rep cards — live microsite pill button (top-right)
+    var liveBtn = e.target.closest("a.rep-card-live-btn");
+    if (liveBtn && !liveBtn.classList.contains("rep-card-live-btn-pending")) {
+      var rep2 = liveBtn.getAttribute("data-rep") || null;
+      var slug = liveBtn.getAttribute("data-slug") || null;
+      track("live_page_open", { rep_name: rep2, rep_slug: slug });
+      return;
+    }
   });
 
   // --- Scenario filter pills ---
