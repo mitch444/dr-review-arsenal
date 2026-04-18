@@ -62,12 +62,20 @@
       }
       return;
     }
-    // Rep cards on index page
-    var card = e.target.closest("a.rep-card");
-    if (card) {
-      var nameEl = card.querySelector(".rep-name");
+    // Rep cards on index page — main link
+    var cardMain = e.target.closest("a.rep-card-main");
+    if (cardMain) {
+      var nameEl = cardMain.querySelector(".rep-name");
       var rn = nameEl ? nameEl.textContent.trim() : null;
       if (rn) track("rep_card_click", { rep_name: rn });
+      return;
+    }
+    // Rep cards — "Build your customer page" CTA
+    var ctaBtn = e.target.closest("a.rep-card-cta");
+    if (ctaBtn) {
+      var rep = ctaBtn.getAttribute("data-rep") || null;
+      track("intake_form_open", { rep_name: rep });
+      return;
     }
   });
 

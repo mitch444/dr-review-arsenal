@@ -205,3 +205,32 @@ h2 { font-size: 22px; margin: 28px 0 12px; letter-spacing: -0.01em; }
   .rep-hero-name { font-size: 24px; }
   .rep-hero-qr { margin-left: 0; margin-top: 16px; width: 100%; max-width: 180px; }
 }
+
+/* --- Rep card CTA (intake form link) --- */
+.rep-card {
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column;
+}
+.rep-card-main {
+  display: block; color: inherit; padding: 20px 20px 16px;
+  flex: 1;
+}
+.rep-card-main:hover { text-decoration: none; }
+.rep-card-cta {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 20px; background: #f3f6fa;
+  border-top: 1px solid var(--border);
+  font-size: 12.5px; font-weight: 600;
+  color: var(--primary); letter-spacing: .01em;
+  transition: background .12s ease, color .12s ease;
+  text-decoration: none;
+}
+.rep-card-cta:hover { background: var(--primary); color: #fff; text-decoration: none; }
+.rep-card-cta .cta-label { display: flex; align-items: center; gap: 7px; }
+.rep-card-cta .cta-label::before { content: "✎"; font-size: 14px; opacity: .85; }
+.rep-card-cta .cta-arrow { font-weight: 700; }
+.rep-card-cta.done { background: #ecfdf5; color: #065f46; }
+.rep-card-cta.done:hover { background: #065f46; color: #fff; }
+.rep-card-cta.done .cta-label::before { content: "✓"; }
